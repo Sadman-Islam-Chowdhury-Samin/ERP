@@ -1,6 +1,8 @@
-﻿using System;
+﻿using HR.BLL;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -28,8 +30,10 @@ namespace HR.UI
                 string employeeName = txtEmployeeName.Text;
                 string employeeEmail = txtEmail.Text;
                 string employeeMobileNumber = txtMobileNumber.Text;
-                string sql = "INSERT INTO [dbo].[Employee] ([Name]  ,[Email] ,[Mobile Number])  VALUES ('" + employeeName + "','" + employeeEmail + "','" + employeeMobileNumber + "')";
-                ExecuteSql(sql);
+
+                EmployeeBLL ObjEmployeeBLL = new EmployeeBLL();
+                ObjEmployeeBLL.AddEmployee(employeeName, employeeEmail, employeeMobileNumber);
+
 
                 ClearControl();
             }
@@ -72,14 +76,27 @@ namespace HR.UI
                 string employeeEmail = txtEmail.Text;
                 string employeeMobileNumber = txtMobileNumber.Text;
                 int employeeID = Convert.ToInt32(txtID.Text);
-                //string sql = "Update [Employee] set ([Name]  ,[Email] ,[Mobile Number])  VALUES ('" + employeeName + "','" + employeeEmail + "','" + employeeMobileNumber + "')";
-                // Corrected UPDATE statement
-                string sql = "UPDATE [Employee] " +
-                             "SET [Name] = '" + employeeName + "', " +
-                                 "[Email] = '" + employeeEmail + "', " +
-                                 "[Mobile Number] = '" + employeeMobileNumber + "' " +
-                             "WHERE ID = " + employeeID;
-                ExecuteSql(sql);
+
+                string sql = @"UPDATE [dbo].[Employee] SET [Name] = @Name ,[Email] = @Email ,[MobileNumber] = @MobileNumber  WHERE ID = @ID";
+
+                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(sql, myConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", employeeName);
+                        cmd.Parameters.AddWithValue("@Email", employeeEmail);
+                        cmd.Parameters.AddWithValue("@MobileNumber", employeeMobileNumber);
+                        cmd.Parameters.AddWithValue("@ID", employeeID);
+
+                        myConnection.Open();
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+
 
                 ClearControl();
             }
@@ -96,9 +113,23 @@ namespace HR.UI
             {
    
                 int employeeID = Convert.ToInt32(txtID.Text);
-                
-                string sql = "DELETE FROM [Employee] WHERE ID = " + employeeID;
-                ExecuteSql(sql);
+
+                string sql = @"DELETE FROM [dbo].[Employee]  WHERE ID = @ID";
+
+                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
+
+                using (SqlConnection myConnection = new SqlConnection(connectionString))
+                {
+
+                    using (SqlCommand cmd = new SqlCommand(sql, myConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", employeeID);
+
+                        myConnection.Open();
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
 
                 ClearControl();
             }
@@ -107,6 +138,37 @@ namespace HR.UI
 
                 throw msgException;
             }
+        }
+
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
+                DataTable dtEmployee = new DataTable();
+                string query = @"SELECT [Name]
+                              ,[Email]
+                              ,[MobileNumber]
+                              ,[ID]
+                          FROM [dbo].[Employee]";
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dtEmployee);
+                }
+
+                grdEmployee.DataSource = dtEmployee;
+                grdEmployee.DataBind();
+
+            }
+            catch (Exception msgException)
+            {
+
+                throw msgException;
+            }
+
         }
     }
 }

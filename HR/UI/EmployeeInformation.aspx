@@ -44,14 +44,26 @@
             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
             <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+            <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
         </td>
         <td>&nbsp;</td>
     </tr>
     <tr>
         <td style="width: 152px">&nbsp;</td>
         <td>
-            <asp:Button ID="Button1" runat="server" Text="Show" />
+            &nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <asp:GridView ID="grdEmployee" runat="server" Width="100%">
+            </asp:GridView>
         </td>
+    </tr>
+    <tr>
+        <td style="width: 152px">&nbsp;</td>
+        <td>
+            &nbsp;</td>
         <td>&nbsp;</td>
     </tr>
 </table>
