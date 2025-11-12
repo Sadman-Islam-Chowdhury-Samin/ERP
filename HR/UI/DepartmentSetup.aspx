@@ -11,40 +11,44 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="width: 216px">&nbsp;</td>
-            <td style="width: 344px">
-                <asp:Label ID="lblDepartmentName" runat="server"></asp:Label>
+            <td style="width: 216px">
+                <asp:Label ID="Label2" runat="server" Text="Employee Number:"></asp:Label>
             </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="width: 216px">&nbsp;</td>
             <td style="width: 344px">
-                <asp:Button ID="Button1" runat="server" Text="Show" />
+                <asp:TextBox ID="txtEmployeeNumber" runat="server" OnTextChanged="txtEmployeeNumber_TextChanged"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td style="width: 216px">
-                <asp:Label ID="Label2" runat="server" Text="Employee Number:"></asp:Label>
+                <asp:Label ID="Label3" runat="server" Text="ID:"></asp:Label>
             </td>
             <td style="width: 344px">
-                <asp:TextBox ID="txtEmployeeNumber" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="width: 216px; height: 26px"></td>
-            <td style="width: 344px; height: 26px">
-                <asp:Label ID="lblEmployeeNumber" runat="server"></asp:Label>
+            <td style="width: 216px">
+                &nbsp;</td>
+            <td style="width: 344px">
+                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
+                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+                <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
+                <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show" />
             </td>
-            <td style="height: 26px"></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="height: 26px" colspan="3">
+                <asp:GridView ID="grdDepartment" runat="server" Width="100%">
+                </asp:GridView>
+            </td>
         </tr>
         <tr>
             <td style="width: 216px">&nbsp;</td>
             <td style="width: 344px">
-                <asp:Button ID="Button2" runat="server" Text="Show" />
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
     </table>
