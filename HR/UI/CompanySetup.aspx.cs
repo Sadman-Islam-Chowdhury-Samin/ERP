@@ -1,5 +1,9 @@
-﻿using System;
+﻿using HR.BLL;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Web;
@@ -14,35 +18,70 @@ namespace HR.UI
         {
 
         }
+        protected void txtCompanyAddress_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private static void ExecuteSql(string sql)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
+                var myConnection = new SqlConnection(connectionString);
+                myConnection.Open();
+                new SqlCommand(sql, myConnection).ExecuteNonQuery();
+                myConnection.Close();
+            }
+            catch (Exception msgException)
+            {
+                throw msgException;
+            }
+        }
+
+        private void ClearControl()
+        {
+            txtCompanyName.Text = string.Empty;
+            txtCompanyEmail.Text = string.Empty;
+            txtCompanyAddress.Text = string.Empty;
+        }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            string companyName = txtCompanyName.Text;
-            lblCompanyName.Text = "Company Name: " + companyName;
+            try
+            {
+                CompanyBLL ObjCompanyBLL = new CompanyBLL();
+                DataTable dtCompany = ObjCompanyBLL.ShowAllCompany();
+
+                grdShow.DataSource = dtCompany;
+                grdShow.DataBind();
+
+            }
+            catch (Exception msgException)
+            {
+
+                throw msgException;
+            }
         }
 
-        protected void btnShowAddress_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
-            string companyAddress = txtCompanyAddress.Text;
-            lblCompanyAddress.Text = "Address: " + companyAddress;
-        }
+            try
+            {
+                string ecompanyName = txtCompanyName.Text;
+                string companyEmail = txtCompanyEmail.Text;
+                string companyAddress = txtCompanyAddress.Text;
 
-        protected void btnShowContact_Click(object sender, EventArgs e)
-        {
-            string companyContact = txtCompanyContact.Text;
-            lblCompanyContact.Text = "Contact: " + companyContact;
-        }
+                CompanyBLL ObjCompanyBLL = new CompanyBLL();
+                ObjCompanyBLL.AddCompany(ecompanyName, companyAddress, companyEmail);
 
-        protected void btnShowEmail_Click(object sender, EventArgs e)
-        {
-            string companyEmail = txtCompanyEmail.Text;
-            lblCompanyEmail.Text = "Email: " + companyEmail;
-        }
 
-        protected void btnShowEstablished_Click(object sender, EventArgs e)
-        {
-            string companyEstablished = txtCompanyEstablished.Text;
-            lblCompanyEstablished.Text = "Established: " + companyEstablished;
+                ClearControl();
+            }
+            catch (Exception msgException)
+            {
+
+                throw msgException;
+            }
         }
     }
 }

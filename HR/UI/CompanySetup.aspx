@@ -4,7 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
         .auto-style1 {
-            width: 149px;
         }
         .auto-style2 {
             width: 149px;
@@ -34,62 +33,11 @@
                 <td class="auto-style3"></td>
             </tr>
             <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Label ID="lblCompanyName" runat="server"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
                 <td class="auto-style1">
                     <asp:Label ID="Label2" runat="server" Text="Address:"></asp:Label>
                 </td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="txtCompanyAddress" runat="server"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Label ID="lblCompanyAddress" runat="server"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Button ID="btnShowAddress" runat="server" OnClick="btnShowAddress_Click" Text="Show" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="Label3" runat="server" Text="Contact:"></asp:Label>
-                </td>
-                <td class="auto-style5">
-                    <asp:TextBox ID="txtCompanyContact" runat="server"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Label ID="lblCompanyContact" runat="server"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Button ID="btnShowContact" runat="server" OnClick="btnShowContact_Click" Text="Show" />
+                    <asp:TextBox ID="txtCompanyAddress" runat="server" OnTextChanged="txtCompanyAddress_TextChanged"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -105,41 +53,31 @@
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style5">
-                    <asp:Label ID="lblCompanyEmail" runat="server"></asp:Label>
-                </td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">&nbsp;</td>
                 <td class="auto-style5">
-                    <asp:Button ID="btnShowEmail" runat="server" OnClick="btnShowEmail_Click" Text="Show" />
+                    <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show" />
+                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:Label ID="Label6" runat="server" Text="Established:"></asp:Label>
-                </td>
+                    &nbsp;</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="txtCompanyEstablished" runat="server"></asp:TextBox>
-                </td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Label ID="lblCompanyEstablished" runat="server"></asp:Label>
+                <td class="auto-style1" colspan="3">
+                    <asp:GridView ID="grdShow" runat="server" Width="100%">
+                    </asp:GridView>
                 </td>
-                <td>&nbsp;</td>
             </tr>
-            <tr>
-                <td class="auto-style1">&nbsp;</td>
-                <td class="auto-style5">
-                    <asp:Button ID="btnShowEstablished" runat="server" OnClick="btnShowEstablished_Click" Text="Show" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+            </table>
     </div>
 </asp:Content>
 
