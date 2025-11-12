@@ -2,47 +2,49 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table style="width:100%;">
         <tr>
-            <td>
+            <td style="width: 168px; height: 29px">
                 <asp:Label ID="Label1" runat="server" Text="Employee Name"></asp:Label>
             </td>
-            <td>
-                <asp:Label ID="Label2" runat="server" Text="Department Name"></asp:Label>
+            <td style="height: 29px">
+                <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
             </td>
-            <td>
+            <td style="height: 29px">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 168px">
                 <asp:Label ID="Label3" runat="server" Text="Leave Duration"></asp:Label>
             </td>
+            <td>
+                <asp:TextBox ID="txtLeaveDuration" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <td style="width: 168px">
+                <asp:Label ID="lblID" runat="server" Text="ID"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
             </td>
             <td>
-                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td>
-                <asp:Label ID="lblEmployeeName" runat="server"></asp:Label>
+            <td style="width: 168px">
+                <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
             </td>
             <td>
-                <asp:Label ID="lblDepartmentName" runat="server"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>
-                <asp:Label ID="lblLeaveDuration" runat="server"></asp:Label>
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
-            <td>
-                <asp:Button ID="Button1" runat="server" Text="Show" />
-            </td>
-            <td>
-                <asp:Button ID="Button2" runat="server" Text="Show" />
-            </td>
-            <td>
-                <asp:Button ID="Button3" runat="server" Text="Show" />
+            <td colspan="3">
+                <asp:GridView ID="grdLeave" runat="server" Width="100%">
+                </asp:GridView>
             </td>
         </tr>
     </table>
