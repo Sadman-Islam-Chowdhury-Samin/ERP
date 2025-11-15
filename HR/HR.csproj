@@ -185,6 +185,7 @@
     <Content Include="UI\DepartmentSetup.aspx" />
     <Content Include="UI\EmployeeInformation.aspx" />
     <Content Include="UI\LeaveApplication.aspx" />
+    <Content Include="UI\StartPage.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -291,6 +292,13 @@
     </Compile>
     <Compile Include="UI\LeaveApplication.aspx.designer.cs">
       <DependentUpon>LeaveApplication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StartPage.aspx.cs">
+      <DependentUpon>StartPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\StartPage.aspx.designer.cs">
+      <DependentUpon>StartPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
