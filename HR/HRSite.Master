@@ -17,6 +17,14 @@
                     
                 </ul>
             </div>
+            <!-- NEW: Navigation button block placed under Sign In -->
+            <div style="margin-top:10px; text-align:center; background:#f7f7f7; padding:10px; border-bottom:1px solid #ccc;">
+                <asp:Button ID="btnNavEmployeeInfo" runat="server" Text="Employee Info" PostBackUrl="~/UI/EmployeeInformation.aspx" />
+                <asp:Button ID="btnNavCompanySetup" runat="server" Text="Company Setup" PostBackUrl="~/UI/CompanySetup.aspx" />
+                <asp:Button ID="btnNavDeptSetup" runat="server" Text="Department Setup" PostBackUrl="~/UI/DepartmentSetup.aspx" />
+                <asp:Button ID="btnNavAttendance" runat="server" Text="Attendance" PostBackUrl="~/UI/Attendance.aspx" />
+                <asp:Button ID="btnNavLeaveApp" runat="server" Text="Leave Application" PostBackUrl="~/UI/LeaveApplication.aspx" />
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
