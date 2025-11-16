@@ -33,15 +33,6 @@ namespace HR
         protected global::System.Web.UI.WebControls.Button btnNavEmployeeInfo;
 
         /// <summary>
-        /// btnNavCompanySetup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNavCompanySetup;
-
-        /// <summary>
         /// btnNavDeptSetup control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace HR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNavDeptSetup;
+
+        /// <summary>
+        /// btnNavCompanySetup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNavCompanySetup;
 
         /// <summary>
         /// btnNavAttendance control.

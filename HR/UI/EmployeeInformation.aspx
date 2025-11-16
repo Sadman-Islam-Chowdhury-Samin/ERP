@@ -43,7 +43,7 @@
         <td>
             <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
             <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
-            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" Visible="False" />
             <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
         </td>
         <td>&nbsp;</td>
