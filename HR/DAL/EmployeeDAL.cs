@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HR.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,7 +16,7 @@ namespace HR.DAL
         public EmployeeDAL() {
             _connectionstring = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
         }
-        public void InsertEmployee(string name, string email, string mobileNumber) {
+        public void InsertEmployee(Employee objEmployee) {
 
             try
             {
@@ -24,9 +25,9 @@ namespace HR.DAL
                 using (var con = new SqlConnection(_connectionstring))
                 using (var cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 50) { Value = (object)name ?? DBNull.Value });
-                    cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 50) { Value = (object)email ?? DBNull.Value });
-                    cmd.Parameters.Add(new SqlParameter("@MobileNumber", SqlDbType.NVarChar, 15) { Value = (object)mobileNumber ?? DBNull.Value });
+                    cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 50) { Value = (object)objEmployee._name ?? DBNull.Value });
+                    cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 50) { Value = (object)objEmployee._email ?? DBNull.Value });
+                    cmd.Parameters.Add(new SqlParameter("@MobileNumber", SqlDbType.NVarChar, 15) { Value = (object)objEmployee._mobileNumber ?? DBNull.Value });
 
 
                     con.Open();

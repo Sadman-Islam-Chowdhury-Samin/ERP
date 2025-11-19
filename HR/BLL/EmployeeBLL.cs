@@ -1,4 +1,5 @@
 ﻿using HR.DAL;
+using HR.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +12,13 @@ namespace HR.BLL
     {
         EmployeeDAL ObjEmployeeDAL;
 
-        public void AddEmployee(string name, string email, string mobileNumber)
+        public void AddEmployee(Employee objEmployee)
         {
             try
             {
                 // Call DAL to save employee
                 ObjEmployeeDAL = new HR.DAL.EmployeeDAL();
-                ObjEmployeeDAL.InsertEmployee(name, email, mobileNumber);
+                ObjEmployeeDAL.InsertEmployee(objEmployee);
             }
             catch (Exception msgException)
             {

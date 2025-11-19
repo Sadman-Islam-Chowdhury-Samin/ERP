@@ -1,4 +1,5 @@
 ﻿using HR.BLL;
+using HR.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,12 +29,13 @@ namespace HR.UI
         {
             try
             {
-                string employeeName = txtEmployeeName.Text;
-                string employeeEmail = txtEmail.Text;
-                string employeeMobileNumber = txtMobileNumber.Text;
-
+                Employee objEmployee = new Employee();
+                objEmployee._name = txtEmployeeName.Text;
+                objEmployee._email = txtEmail.Text;
+                objEmployee._mobileNumber = txtMobileNumber.Text;
+                //objEmployee._tinNo = "";
                 ObjEmployeeBLL = new EmployeeBLL();
-                ObjEmployeeBLL.AddEmployee(employeeName, employeeEmail, employeeMobileNumber);
+                ObjEmployeeBLL.AddEmployee(objEmployee);
                 ShowEmployee();
 
 
@@ -157,7 +159,7 @@ namespace HR.UI
             else if (e.CommandName.Equals("Delete"))
             {
                 ObjEmployeeBLL = new EmployeeBLL();
-                int id = Convert.ToInt32(employeeID);   // Convert string to int
+                int id = Convert.ToInt32(employeeID);  
                 ObjEmployeeBLL.DeleteEmployee(id);
                 ShowEmployee();
             }
