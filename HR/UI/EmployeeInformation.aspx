@@ -74,7 +74,7 @@
                             <asp:Label ID="lblMobileNumber" runat="server" Text='<%# Eval("MobileNumber") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="ID">
+                    <asp:TemplateField HeaderText="ID" Visible="False">
                         <ItemTemplate>
                             <asp:Label ID="lblID" runat="server" Text='<%# Eval("ID") %>'></asp:Label>
                         </ItemTemplate>

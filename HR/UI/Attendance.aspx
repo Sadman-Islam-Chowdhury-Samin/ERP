@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:GridView ID="grdAttendance" runat="server" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="grdAttendance" runat="server" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grdAttendance_SelectedIndexChanged">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

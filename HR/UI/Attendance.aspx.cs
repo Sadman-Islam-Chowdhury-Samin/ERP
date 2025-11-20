@@ -78,5 +78,10 @@ namespace HR.UI
                 throw msgException;
             }
         }
+
+        protected void grdAttendance_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
