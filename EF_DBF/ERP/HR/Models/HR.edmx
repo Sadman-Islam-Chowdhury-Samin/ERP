@@ -5,18 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="dberpbatch2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dberpbatch2.dbo.Attendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
-          <Property Name="Day1" Type="varchar" MaxLength="50" />
+          <Property Name="AttendanceDate" Type="date" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsPresent" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dberpbatch2.dbo.Company' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="ID" />
@@ -43,8 +40,6 @@ warning 6002: The table/view 'dberpbatch2.dbo.Company' does not have a primary k
           <Property Name="MobileNumber" Type="varchar" MaxLength="50" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dberpbatch2.dbo.Leave' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Leave">
           <Key>
             <PropertyRef Name="ID" />
@@ -54,30 +49,11 @@ warning 6002: The table/view 'dberpbatch2.dbo.Leave' does not have a primary key
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityContainer Name="dberpbatch2ModelStoreContainer">
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Attendance" EntityType="Self.Attendance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Attendance].[EmployeeName] AS [EmployeeName], 
-    [Attendance].[Day1] AS [Day1], 
-    [Attendance].[ID] AS [ID]
-    FROM [dbo].[Attendance] AS [Attendance]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Company" EntityType="Self.Company" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Company].[CompanyName] AS [CompanyName], 
-    [Company].[Address] AS [Address], 
-    [Company].[Email] AS [Email], 
-    [Company].[ID] AS [ID]
-    FROM [dbo].[Company] AS [Company]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Leave" EntityType="Self.Leave" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Leave].[EmployeeName] AS [EmployeeName], 
-    [Leave].[LeaveDuration] AS [LeaveDuration], 
-    [Leave].[ID] AS [ID]
-    FROM [dbo].[Leave] AS [Leave]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Leave" EntityType="Self.Leave" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -97,8 +73,9 @@ warning 6002: The table/view 'dberpbatch2.dbo.Leave' does not have a primary key
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Day1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttendanceDate" Type="DateTime" Precision="0" />
+          <Property Name="IsPresent" Type="Boolean" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -151,8 +128,9 @@ warning 6002: The table/view 'dberpbatch2.dbo.Leave' does not have a primary key
           <EntitySetMapping Name="Attendances">
             <EntityTypeMapping TypeName="dberpbatch2Model.Attendance">
               <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="Day1" ColumnName="Day1" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

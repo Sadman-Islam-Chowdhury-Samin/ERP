@@ -15,7 +15,8 @@ namespace HR.Models
     public partial class Attendance
     {
         public string EmployeeName { get; set; }
-        public string Day1 { get; set; }
         public int ID { get; set; }
+        public Nullable<System.DateTime> AttendanceDate { get; set; }
+        public Nullable<bool> IsPresent { get; set; }
     }
 }
