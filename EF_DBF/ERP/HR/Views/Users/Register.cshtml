@@ -1,0 +1,29 @@
+﻿@model HR.Models.User
+
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewBag.Title = "Register";
+}
+
+<div class="card shadow-sm p-4" style="max-width:400px; margin:auto; margin-top:50px; border-radius:10px;">
+    <h2 class="text-center mb-4">Sign Up</h2>
+
+    @using (Html.BeginForm("Register", "Users", FormMethod.Post))
+    {
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.Username)
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Choose a username" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Choose a password" })
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+    }
+
+    <p class="text-center mt-3">
+        Already have an account? @Html.ActionLink("Login", "Login", "Users")
+    </p>
+</div>

@@ -30,5 +30,6 @@ namespace HR.Models
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Leave> Leaves { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

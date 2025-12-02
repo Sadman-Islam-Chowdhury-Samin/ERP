@@ -1,0 +1,36 @@
+﻿@model HR.ViewModels.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<div class="card shadow-sm p-4" style="max-width:400px; margin:auto; margin-top:50px; border-radius:10px;">
+    <h2 class="text-center mb-4">Login</h2>
+
+    @* Display error above the form *@
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    @using (Html.BeginForm("Login", "Users", FormMethod.Post))
+    {
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    }
+
+
+    <p class="text-center mt-3">
+        Don't have an account? @Html.ActionLink("Sign Up", "Register", "Users")
+    </p>
+</div>
