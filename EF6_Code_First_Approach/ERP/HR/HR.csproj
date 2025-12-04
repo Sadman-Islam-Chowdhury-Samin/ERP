@@ -133,6 +133,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveApplicationsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +157,10 @@
     <Compile Include="Migrations\202512031351011_AddAttendanceTable.Designer.cs">
       <DependentUpon>202512031351011_AddAttendanceTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202512040354465_AddUsersTable.cs" />
+    <Compile Include="Migrations\202512040354465_AddUsersTable.Designer.cs">
+      <DependentUpon>202512040354465_AddUsersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Company.cs" />
@@ -163,6 +168,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HRContext.cs" />
     <Compile Include="Models\LeaveApplication.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +247,14 @@
     <Content Include="Views\Attendances\Details.cshtml" />
     <Content Include="Views\Attendances\Edit.cshtml" />
     <Content Include="Views\Attendances\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Shared\_AuthLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202512031351011_AddAttendanceTable.resx">
       <DependentUpon>202512031351011_AddAttendanceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512040354465_AddUsersTable.resx">
+      <DependentUpon>202512040354465_AddUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

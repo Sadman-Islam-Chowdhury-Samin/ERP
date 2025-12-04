@@ -19,6 +19,8 @@ namespace HR.Models
         public DbSet<Company> Companies { get; set; }
         public DbSet<LeaveApplication> LeaveApplications { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
     }
 }

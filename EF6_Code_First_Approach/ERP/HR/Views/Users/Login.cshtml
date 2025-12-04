@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<h2>Login</h2>
+
+<form method="post" action="/Users/Login" autocomplete="off">
+
+    <!-- Dummy inputs to stop browser autofill -->
+    <input type="text" name="fakeuser" style="display:none" autocomplete="off" />
+    <input type="password" name="fakepass" style="display:none" autocomplete="new-password" />
+
+    <label>Username</label>
+    <input type="text" name="username" class="form-control" required autocomplete="off" />
+
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" required autocomplete="new-password" />
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+    <p style="color:red">@ViewBag.Error</p>
+
+    <br />
+    <a href="/Users/Register">Don't have an account? Register</a>
+</form>
