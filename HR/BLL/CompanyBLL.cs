@@ -11,7 +11,7 @@ namespace HR.BLL
 {
     public class CompanyBLL
     {
-        public void AddCompany(string name,string address, string email)
+        public void AddCompany(string name, string address, string email)
         {
             try
             {

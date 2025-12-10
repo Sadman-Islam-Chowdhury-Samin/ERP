@@ -1,21 +1,17 @@
 ﻿using HR.DAL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 
 namespace HR.BLL
 {
     public class AttendanceBLL
     {
-        public void AddAttendance(string name, string day1)
+        public void AddAttendance(string employeeName, DateTime attendanceDate, bool isPresent)
         {
             try
             {
-                // Call DAL to save Attendance
-                AttendanceDAL ObjAttendanceDAL = new HR.DAL.AttendanceDAL();
-                ObjAttendanceDAL.InsertAttendance(name, day1);
+                AttendanceDAL ObjAttendanceDAL = new AttendanceDAL();
+                ObjAttendanceDAL.InsertAttendance(employeeName, attendanceDate, isPresent);
             }
             catch (Exception msgException)
             {
@@ -27,7 +23,7 @@ namespace HR.BLL
         {
             try
             {
-                AttendanceDAL ObjAttendanceDAL = new HR.DAL.AttendanceDAL();
+                AttendanceDAL ObjAttendanceDAL = new AttendanceDAL();
                 return ObjAttendanceDAL.ShowAllAttendance();
             }
             catch (Exception msgException)
@@ -35,9 +31,5 @@ namespace HR.BLL
                 throw msgException;
             }
         }
-
     }
-
-    
-    
 }

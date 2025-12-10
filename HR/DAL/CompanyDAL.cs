@@ -43,12 +43,62 @@ namespace HR.DAL
             }
 
         }
+        public void UpdateCompany(int companyId, string name, string address, string email)
+        {
+            try
+            {
+                const string sql = @"UPDATE [dbo].[Company] 
+                             SET [CompanyName] = @CompanyName, 
+                                 [Address] = @Address, 
+                                 [Email] = @Email
+                             WHERE [ID] = @ID";
+
+                using (var con = new SqlConnection(_connectionstring))
+                using (var cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = companyId });
+                    cmd.Parameters.Add(new SqlParameter("@CompanyName", SqlDbType.NVarChar, 50) { Value = (object)name ?? DBNull.Value });
+                    cmd.Parameters.Add(new SqlParameter("@Address", SqlDbType.NVarChar, 200) { Value = (object)address ?? DBNull.Value });
+                    cmd.Parameters.Add(new SqlParameter("@Email", SqlDbType.NVarChar, 50) { Value = (object)email ?? DBNull.Value });
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception msgException)
+            {
+                throw msgException;
+            }
+        }
+
+
+        public void DeleteCompany(int companyId)
+        {
+            try
+            {
+                const string sql = @"DELETE FROM [dbo].[Company] WHERE ID = @ID";
+
+                using (var con = new SqlConnection(_connectionstring))
+                using (var cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = companyId });
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception msgException)
+            {
+                throw msgException;
+            }
+        }
+
 
         public DataTable ShowAllCompany()
         {
             try
             {
-                const string sql = @"SELECT [CompanyName], [Address], [Email] FROM [dbo].[Company]";
+                const string sql = @"SELECT [ID], [CompanyName], [Address], [Email] FROM [dbo].[Company]";
                 DataTable dtCompany = new DataTable();
 
                 using (var con = new SqlConnection(_connectionstring))

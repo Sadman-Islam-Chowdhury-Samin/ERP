@@ -93,14 +93,12 @@
 
         <!-- Top Navbar -->
         <div class="top-navbar">
-            <div class="logo">HR Module</div>
-            <a runat="server" href="~/">Sign In</a>
-        </div>
+        <div class="logo">HR Module</div>
 
-        <!-- Main Navigation Buttons -->
-        <div class="menu-container">
-            <asp:Button ID="btnNavStartPage" runat="server" CssClass="nav-btn"
-                Text="Start Page" PostBackUrl="~/UI/StartPage.aspx" />
+        <div class="nav-links">
+            <%--<asp:Button ID="btnNavStartPage" runat="server" CssClass="nav-btn"
+                Text="Start Page" PostBackUrl="~/UI/StartPage.aspx" />--%>
+
             <asp:Button ID="btnNavEmployeeInfo" runat="server" CssClass="nav-btn"
                 Text="Employee Info" PostBackUrl="~/UI/EmployeeInformation.aspx" />
 
@@ -115,7 +113,12 @@
 
             <asp:Button ID="btnNavLeaveApp" runat="server" CssClass="nav-btn"
                 Text="Leave Application" PostBackUrl="~/UI/LeaveApplication.aspx" />
+
+<%--            <a runat="server" href="~/">Sign In</a>--%>
         </div>
+    </div>
+
+        
 
         <!-- Page Content -->
         <div class="content-area">

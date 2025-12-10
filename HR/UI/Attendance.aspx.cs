@@ -1,13 +1,7 @@
 ﻿using HR.BLL;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace HR.UI
 {
@@ -18,27 +12,11 @@ namespace HR.UI
 
         }
 
-        private static void ExecuteSql(string sql)
-        {
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
-                var myConnection = new SqlConnection(connectionString);
-                myConnection.Open();
-                new SqlCommand(sql, myConnection).ExecuteNonQuery();
-                myConnection.Close();
-            }
-            catch (Exception msgException)
-            {
-                throw msgException;
-            }
-        }
-
         private void ClearControl()
         {
             txtEmployeeName.Text = string.Empty;
-            txtDay1.Text = string.Empty;
-            txtID.Text = string.Empty;
+            txtAttendanceDate.Text = string.Empty;
+            ddlPresent.SelectedIndex = 0;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -46,17 +24,16 @@ namespace HR.UI
             try
             {
                 string employeeName = txtEmployeeName.Text;
-                string day1 = txtDay1.Text;
+                DateTime attendanceDate = Convert.ToDateTime(txtAttendanceDate.Text);
+                bool isPresent = ddlPresent.SelectedValue == "true";
 
                 AttendanceBLL ObjAttendanceBLL = new AttendanceBLL();
-                ObjAttendanceBLL.AddAttendance(employeeName, day1);
-
+                ObjAttendanceBLL.AddAttendance(employeeName, attendanceDate, isPresent);
 
                 ClearControl();
             }
             catch (Exception msgException)
             {
-
                 throw msgException;
             }
         }
@@ -70,18 +47,11 @@ namespace HR.UI
 
                 grdAttendance.DataSource = dtAttendance;
                 grdAttendance.DataBind();
-
             }
             catch (Exception msgException)
             {
-
                 throw msgException;
             }
-        }
-
-        protected void grdAttendance_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

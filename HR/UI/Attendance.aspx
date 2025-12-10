@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HRSite.Master" AutoEventWireup="true" CodeBehind="Attendance.aspx.cs" Inherits="HR.UI.Attendance" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <table style="width:100%;">
+
+        <!-- Employee Name -->
         <tr>
             <td style="width: 186px">
                 <asp:Label ID="Label1" runat="server" Text="Employee Name"></asp:Label>
@@ -9,45 +13,58 @@
                 <asp:TextBox ID="txtEmployeeName" runat="server"></asp:TextBox>
             </td>
         </tr>
-        <tr>
-            <td style="height: 20px; width: 186px">
-                <asp:Label ID="Label3" runat="server" Text="Day 1"></asp:Label>
-            </td>
-            <td style="height: 20px">
-                <asp:TextBox ID="txtDay1" runat="server"></asp:TextBox>
-            </td>
-        </tr>
+
+        <!-- Attendance Date -->
         <tr>
             <td style="width: 186px">
-                <asp:Label ID="Label4" runat="server" Text="ID"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Attendance Date"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtAttendanceDate" runat="server" TextMode="Date"></asp:TextBox>
             </td>
         </tr>
+
+        <!-- IsPresent TRUE/FALSE -->
         <tr>
             <td style="width: 186px">
-                <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show" />
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
+                <asp:Label ID="Label3" runat="server" Text="Present?"></asp:Label>
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:DropDownList ID="ddlPresent" runat="server">
+                    <asp:ListItem Text="-- Select --" Value=""></asp:ListItem>
+                    <asp:ListItem Text="Present" Value="true"></asp:ListItem>
+                    <asp:ListItem Text="Absent" Value="false"></asp:ListItem>
+                </asp:DropDownList>
+            </td>
         </tr>
+
+        <!-- Buttons -->
+        <tr>
+            <td style="width: 186px">
+                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
+                <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />
+            </td>
+            <td></td>
+        </tr>
+
+        <!-- Grid View -->
         <tr>
             <td colspan="2">
-                <asp:GridView ID="grdAttendance" runat="server" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="grdAttendance_SelectedIndexChanged">
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                <asp:GridView ID="grdAttendance" runat="server" Width="100%" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="EmployeeName" HeaderText="Employee Name" />
+                        <asp:BoundField DataField="AttendanceDate" HeaderText="Date" DataFormatString="{0:yyyy-MM-dd}" />
+                        <asp:BoundField DataField="IsPresent" HeaderText="Present?" />
+                        <asp:BoundField DataField="ID" HeaderText="ID" />
+                    </Columns>
+
                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 </asp:GridView>
             </td>
         </tr>
+
     </table>
+
 </asp:Content>
