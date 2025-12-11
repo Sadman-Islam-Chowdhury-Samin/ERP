@@ -7,6 +7,7 @@ namespace HR.Models
 {
     public class Employee
     {
+        public int Id { get; set; }
         string _name;
         string _email;
         string _mobileNumber;
