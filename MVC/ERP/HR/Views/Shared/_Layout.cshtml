@@ -25,6 +25,18 @@
 
 
                 </ul>
+
+                <ul class="navbar-nav">
+                    <li>
+                        @Html.ActionLink(
+                            "Logout",
+                            "Logout",
+                            "User",
+                            null,
+                            new { @class = "nav-link text-danger" }
+                        )
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
