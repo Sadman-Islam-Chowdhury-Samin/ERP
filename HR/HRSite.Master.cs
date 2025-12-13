@@ -13,5 +13,12 @@ namespace HR
         {
 
         }
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/UI/User.aspx");
+        }
+
     }
 }
