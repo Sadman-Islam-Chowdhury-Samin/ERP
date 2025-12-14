@@ -1,12 +1,6 @@
 ﻿using HR.BLL;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace HR.UI
@@ -15,71 +9,92 @@ namespace HR.UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
-        private static void ExecuteSql(string sql)
+        protected void grdLeave_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["dberpbatch2connection"].ToString();
-                var myConnection = new SqlConnection(connectionString);
-                myConnection.Open();
-                new SqlCommand(sql, myConnection).ExecuteNonQuery();
-                myConnection.Close();
-            }
-            catch (Exception msgException)
-            {
-                throw msgException;
-            }
+            // REQUIRED to avoid runtime error
+            // Actual delete is handled in RowCommand
         }
 
         private void ClearControl()
         {
-            txtEmployeeName.Text = string.Empty;
-            txtLeaveDuration.Text = string.Empty;
-            txtID.Text = string.Empty;
+            txtEmployeeName.Text = "";
+            txtLeaveDuration.Text = "";
+            txtID.Text = "";
+            btnDelete.Visible = false;
+        }
+
+        private void ShowLeave()
+        {
+            LeaveBLL objLeaveBLL = new LeaveBLL();
+            grdLeave.DataSource = objLeaveBLL.ShowAllLeaves();
+            grdLeave.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string employeeName = txtEmployeeName.Text;
-                string duration = txtLeaveDuration.Text;
+            LeaveBLL objLeaveBLL = new LeaveBLL();
+            objLeaveBLL.AddLeave(txtEmployeeName.Text, txtLeaveDuration.Text);
 
-                LeaveBLL ObjLeaveBLL = new LeaveBLL();
-                ObjLeaveBLL.AddLeave(employeeName, duration);
-
-
-                ClearControl();
-            }
-            catch (Exception msgException)
-            {
-
-                throw msgException;
-            }
+            ShowLeave();
+            ClearControl();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LeaveBLL ObjLeaveBLL = new LeaveBLL();
-                DataTable dtLeave = ObjLeaveBLL.ShowAllLeaves();
-
-                grdLeave.DataSource = dtLeave;
-                grdLeave.DataBind();
-
-            }
-            catch (Exception msgException)
-            {
-
-                throw msgException;
-            }
-
+            ShowLeave();
         }
 
-        
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            LeaveBLL objLeaveBLL = new LeaveBLL();
+            objLeaveBLL.UpdateLeave(
+                Convert.ToInt32(txtID.Text),
+                txtEmployeeName.Text,
+                txtLeaveDuration.Text
+            );
+
+            ShowLeave();
+            ClearControl();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            LeaveBLL objLeaveBLL = new LeaveBLL();
+            objLeaveBLL.DeleteLeave(Convert.ToInt32(txtID.Text));
+
+            ShowLeave();
+            ClearControl();
+        }
+
+        protected void grdLeave_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "Select")
+            {
+                txtEmployeeName.Text =
+                    ((Label)grdLeave.Rows[index].FindControl("lblName")).Text;
+
+                txtLeaveDuration.Text =
+                    ((Label)grdLeave.Rows[index].FindControl("lblDuration")).Text;
+
+                txtID.Text =
+                    ((Label)grdLeave.Rows[index].FindControl("lblID")).Text;
+
+                btnDelete.Visible = true;
+            }
+            else if (e.CommandName == "Delete")
+            {
+                int id = Convert.ToInt32(
+                    ((Label)grdLeave.Rows[index].FindControl("lblID")).Text);
+
+                LeaveBLL objLeaveBLL = new LeaveBLL();
+                objLeaveBLL.DeleteLeave(id);
+
+                ShowLeave();
+            }
+        }
     }
 }

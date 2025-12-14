@@ -37,5 +37,31 @@ namespace HR.BLL
             }
         }
 
+        public void UpdateLeave(int id, string name, string duration)
+        {
+            try
+            {
+                LeaveDAL objLeaveDAL = new LeaveDAL();
+                objLeaveDAL.UpdateLeave(id, name, duration);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeleteLeave(int id)
+        {
+            try
+            {
+                LeaveDAL objLeaveDAL = new LeaveDAL();
+                objLeaveDAL.DeleteLeave(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

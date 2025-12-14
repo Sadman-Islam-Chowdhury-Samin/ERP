@@ -65,5 +65,40 @@ namespace HR.DAL
             }
         }
 
+        public void UpdateLeave(int id, string name, string duration)
+        {
+            const string sql =
+                @"UPDATE [dbo].[Leave]
+                  SET [EmployeeName] = @EmployeeName,
+                      [LeaveDuration] = @LeaveDuration
+                  WHERE [ID] = @ID";
+
+            using (SqlConnection con = new SqlConnection(_connectionstring))
+            using (SqlCommand cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@EmployeeName", name);
+                cmd.Parameters.AddWithValue("@LeaveDuration", duration);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteLeave(int id)
+        {
+            const string sql =
+                "DELETE FROM [dbo].[Leave] WHERE ID = @ID";
+
+            using (SqlConnection con = new SqlConnection(_connectionstring))
+            using (SqlCommand cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
