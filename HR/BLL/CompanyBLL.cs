@@ -37,6 +37,32 @@ namespace HR.BLL
             }
         }
 
+        public void UpdateCompany(int id, string name, string address, string email)
+        {
+            try
+            {
+                CompanyDAL objDAL = new CompanyDAL();
+                objDAL.UpdateCompany(id, name, address, email);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeleteCompany(int id)
+        {
+            try
+            {
+                CompanyDAL objDAL = new CompanyDAL();
+                objDAL.DeleteCompany(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
     }
 }
