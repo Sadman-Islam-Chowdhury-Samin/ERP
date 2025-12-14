@@ -62,5 +62,39 @@ namespace HR.DAL
                 throw msgException;
             }
         }
+
+        public void UpdateAttendance(int id, string employeeName, DateTime attendanceDate, bool isPresent)
+        {
+            const string sql = @"UPDATE Attendance 
+                                SET EmployeeName=@EmployeeName,
+                                    AttendanceDate=@AttendanceDate,
+                                    IsPresent=@IsPresent
+                                WHERE ID=@ID";
+
+            using (var con = new SqlConnection(_connectionstring))
+            using (var cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@EmployeeName", employeeName);
+                cmd.Parameters.AddWithValue("@AttendanceDate", attendanceDate);
+                cmd.Parameters.AddWithValue("@IsPresent", isPresent);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteAttendance(int id)
+        {
+            const string sql = @"DELETE FROM Attendance WHERE ID=@ID";
+
+            using (var con = new SqlConnection(_connectionstring))
+            using (var cmd = new SqlCommand(sql, con))
+            {
+                cmd.Parameters.AddWithValue("@ID", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

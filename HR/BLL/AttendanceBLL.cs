@@ -31,5 +31,31 @@ namespace HR.BLL
                 throw msgException;
             }
         }
+
+        public void UpdateAttendance(int id, string employeeName, DateTime attendanceDate, bool isPresent)
+        {
+            try
+            {
+                AttendanceDAL objDAL = new AttendanceDAL();
+                objDAL.UpdateAttendance(id, employeeName, attendanceDate, isPresent);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DeleteAttendance(int id)
+        {
+            try
+            {
+                AttendanceDAL objDAL = new AttendanceDAL();
+                objDAL.DeleteAttendance(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
