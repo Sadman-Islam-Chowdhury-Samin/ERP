@@ -13,10 +13,11 @@
     </tr>
 
     <tr>
-        <td style="width: 180px">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
+        <td style="width: 180px; height: 32px;">
+            Employee Number:</td>
+        <td style="height: 32px">
+            <asp:TextBox ID="txtEmployeeNumber" runat="server" />
+        </td>
     </tr>
 
     <!-- Hidden ID Field -->
@@ -43,10 +44,17 @@
 
     <tr>
         <td colspan="2">
-            <asp:GridView ID="grdDepartment" runat="server" Width="100%" AutoGenerateColumns="False"
-                CellPadding="4" ForeColor="#333333" GridLines="None"
-                OnRowCommand="grdDepartment_RowCommand"
-                OnRowDeleting="grdDepartment_RowDeleting" OnSelectedIndexChanged="grdDepartment_SelectedIndexChanged">
+            <asp:GridView ID="grdDepartment" runat="server"
+    Width="100%"
+    AutoGenerateColumns="False"
+    AutoPostBack="true"
+    CellPadding="4"
+    ForeColor="#333333"
+    GridLines="None"
+    OnRowCommand="grdDepartment_RowCommand"
+    OnRowDeleting="grdDepartment_RowDeleting"
+    OnSelectedIndexChanged="grdDepartment_SelectedIndexChanged">
+
 
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
 
@@ -57,11 +65,11 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <%--<asp:TemplateField HeaderText="Employee Number">
+                    <asp:TemplateField HeaderText="Employee Number">
                         <ItemTemplate>
                             <asp:Label ID="lblEmpNumber" runat="server" Text='<%# Eval("EmployeeNumber") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>--%>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="ID" Visible="False">
                         <ItemTemplate>
