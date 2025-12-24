@@ -14,6 +14,8 @@ namespace HR.BLL
             return objUserDAL.ValidateUser(username, password);
         }
 
-       
+  //     <connectionStrings>
+	 // <add connectionString = "Data Source=MSI\SQLEXPRESS;Initial Catalog=dberpbatch2;User ID=sa;Password=aspdotnetcourse;MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" name="dberpbatch2connection" />
+  //</connectionStrings>
     }
 }
