@@ -43,7 +43,7 @@ namespace HR.UI
         private void ClearControl()
         {
             txtDepartmentName.Text = string.Empty;
-            txtEmployeeNumber.Text = string.Empty;
+            //txtEmployeeNumber.Text = string.Empty;
             txtID.Text = string.Empty;
         }
 
@@ -58,8 +58,8 @@ namespace HR.UI
                 //DepartmentBLL ObjDepartmentBLL = new DepartmentBLL();
                 //ObjDepartmentBLL.AddDepartment(departmentName, employeeNumber);
 
-                DepartmentBLL ObjDepartmentBLL = new DepartmentBLL();
-                ObjDepartmentBLL.AddDepartment(txtDepartmentName.Text, txtEmployeeNumber.Text);
+                //DepartmentBLL ObjDepartmentBLL = new DepartmentBLL();
+                //ObjDepartmentBLL.AddDepartment(txtDepartmentName.Text, txtEmployeeNumber.Text);
 
                 ShowDepartment();
                 ClearControl();
@@ -100,11 +100,11 @@ namespace HR.UI
             try
             {
                 string departmentName = txtDepartmentName.Text;
-                string employeeNumber = txtEmployeeNumber.Text;
+                //string employeeNumber = txtEmployeeNumber.Text;
                 int departmentID = Convert.ToInt32(txtID.Text);
 
-                DepartmentBLL ObjDepartmentBLL = new DepartmentBLL();
-                ObjDepartmentBLL.UpdateDepartment(departmentID, departmentName, employeeNumber);
+                //DepartmentBLL ObjDepartmentBLL = new DepartmentBLL();
+                //ObjDepartmentBLL.UpdateDepartment(departmentID, departmentName, employeeNumber);
 
 
                 ShowDepartment();
@@ -143,7 +143,7 @@ namespace HR.UI
             if (e.CommandName == "Select")
             {
                 txtDepartmentName.Text = ((Label)grdDepartment.Rows[index].FindControl("lblDeptName")).Text;
-                txtEmployeeNumber.Text = ((Label)grdDepartment.Rows[index].FindControl("lblEmpNumber")).Text;
+                //txtEmployeeNumber.Text = ((Label)grdDepartment.Rows[index].FindControl("lblEmpNumber")).Text;
                 txtID.Text = ((Label)grdDepartment.Rows[index].FindControl("lblID")).Text;
             }
             else if (e.CommandName == "Delete")
@@ -157,6 +157,11 @@ namespace HR.UI
         }
 
         protected void grdDepartment_RowDeleting(object sender, GridViewDeleteEventArgs e) { 
+        }
+
+        protected void grdDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
